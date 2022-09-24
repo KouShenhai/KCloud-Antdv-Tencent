@@ -35,8 +35,8 @@
         >确定</a-button>
       </a-form-item>
       <div class="user-login-other">
-        <a href="http://175.178.69.253/oauth2/loading.html" class="dd">单点登录</a>
-        <a href="https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019121269782969&scope=auth_user&redirect_uri=http://175.178.69.253/laokou/auth/sys/auth/api/zfbLogin" class="zfb">支付宝登录</a>
+        <a href="http://192.168.62.1:5555/auth/sys/loading.html" class="dd">单点登录</a>
+        <a href="https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019121269782969&scope=auth_user&redirect_uri=http://192.168.62.1:5555/auth/sys/auth/api/zfbLogin" class="zfb">支付宝登录</a>
       </div>
     </a-form-model>
   </div>
@@ -48,7 +48,7 @@ import { timeFix } from '@/utils/util'
 import { userApi } from '@/api/login'
 import { JSEncrypt } from 'jsencrypt'
 export default {
-  name: "Login",
+  name: 'Login',
   components: {
   },
   data () {
@@ -59,7 +59,7 @@ export default {
         username: '',
         password: '',
         captcha: '',
-        uuid: '',
+        uuid: ''
       },
       rules: {
         username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
@@ -72,19 +72,20 @@ export default {
   created () {
 
   },
-  mounted() {
+  mounted () {
     this.checkLogin()
   },
   methods: {
-    checkLogin() {
+    checkLogin () {
       let queryAttr = window.location.search
       let notLogin = true
       if (queryAttr.length > 0) {
         queryAttr = queryAttr.substring(1)
-        let data = queryAttr.split("&")
+        const data = queryAttr.split('&')
         for (let i = 0; i < data.length; i++) {
-          let queryData = data[i].split("=")
-          if (queryData[0] == "access_token") {
+          const queryData = data[i].split('=')
+          // eslint-disable-next-line eqeqeq
+          if (queryData[0] == 'access_token') {
             notLogin = false
             this.SSOLogin(queryData[1])
             this.loginSuccess()
@@ -95,12 +96,13 @@ export default {
         this.requestFailed()
       }
     },
-    getUuid() {
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,'x' ? (Math.random() * 16 | 0) : ('r&0x3' | '0x8')).toString(16);
+    getUuid () {
+      // eslint-disable-next-line no-constant-condition
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, 'x' ? (Math.random() * 16 | 0) : ('r&0x3' | '0x8')).toString(16)
     },
     getCode () {
-      this.form.uuid = this.getUuid();
-      this.codeUrl = process.env.VUE_APP_BASE_API + userApi.Captcha + '?uuid=' + this.form.uuid;
+      this.form.uuid = this.getUuid()
+      this.codeUrl = process.env.VUE_APP_BASE_API + userApi.Captcha + '?uuid=' + this.form.uuid
     },
     ...mapActions(['Login', 'Logout', 'SSOLogin']),
     handleSubmit () {
@@ -113,9 +115,10 @@ export default {
           const password = encrypt.encrypt(this.form.password)
           const uuid = this.form.uuid
           const captcha = this.form.captcha
-          const params = {username:username,password:password,captcha:captcha,uuid:uuid}
+          const params = { username: username, password: password, captcha: captcha, uuid: uuid }
           this.Login(params)
             .then((res) => this.loginSuccess())
+            // eslint-disable-next-line handle-callback-err
             .catch(err => this.requestFailed())
             .finally(() => {
               this.logining = false
