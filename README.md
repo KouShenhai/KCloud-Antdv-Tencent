@@ -1,37 +1,62 @@
-# KCloud-Antdv-Neflix
+<h1 align="center">LaoKou-Antdv</h1>
+KCloud-Antdv 是LaoKou-Vue和Ant Design Vue Pro的结合。
 
-#### 介绍
-老寇云平台前端
+## 简介
 
-#### 软件架构
-软件架构说明
+**LaoKou-Antdv**，使用[LaoKou-Vue](https://gitee.com/tttt_wmh_cn/KCloud-Platform) 作为后端，改其原有Element UI为Ant Design Vue。将会持续完全适配LaoKou-Vue。
 
+> LaoKou-Vue是基于SpringBoot，SpringCloud，Shiro，JWT，Vue 的前后端分离权限管理系统。
+>
+> 拥有用户管理、菜单管理、角色管理、操作日志、登录日志、服务监控、连接池监视等功能。
 
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+* Ant Design Vue文档：[https://www.antdv.com/docs/vue/introduce-cn](https://www.antdv.com/docs/vue/introduce-cn)
 
 
-#### 特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 开始使用
+
+1. 环境准备
+   * 安装 [node](http://nodejs.org) 和 [git](https://git-scm.com)
+
+2. 安装
+   
+   ```shell
+   git clone https://gitee.com/tttt_wmh_cn/KCloud-Antdv.git
+   ```
+
+3. 本地开发
+
+   进入项目根目录
+
+   ```shell
+   npm install
+   ```
+
+   > 若耗时太长可使用`npm install --registry=https://registry.npm.taobao.org`
+
+   ```shell
+   npm run serve
+   ```
+
+   > 打开浏览器访问 [http://localhost:8000](http://localhost:8000/)
+
+4. 生产部署
+   ```shell
+   npm run build
+   ```
+5. 插件安装
+   ```shel
+   npm install mavon-editor --save
+   ```
+  
+## 致谢
+* [LaoKou-Vue](https://gitee.com/y_project/RuoYi-Vue) 基于SpringBoot，SpringCloud，Shiro，JWT，Vue 的前后端分离权限管理系统
+* [Ant Design Vue](https://github.com/vueComponent/ant-design-vue/) An enterprise-class UI components based on Ant Design and Vue
+* [Ant Design Vue Pro](https://github.com/vueComponent/ant-design-vue-pro) Use Ant Design Vue like a Pro
+* [mavonEditor](https://github.com/hinesboy/mavonEditor) markdown编辑器
+
+## 联系
+如果讨论后端技术，推荐添加：
+[![加入QQ群](https://img.shields.io/badge/Q群-218686225-blue.svg)](https://qm.qq.com/cgi-bin/qm/qr?k=WFANTXDEjrDw6UxsrRFCv_rQsEu6LTxH&jump_from=webapi)
+
+
