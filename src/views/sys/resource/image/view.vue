@@ -160,7 +160,7 @@
           pageSize: 10,
           title: undefined,
           code: 'image',
-          id: ""
+          id: ''
         },
         columns: [
           {
@@ -201,7 +201,8 @@
             scopedSlots: { customRender: 'operation' },
             align: 'center'
           }
-        ],columns1: [
+        ],
+          columns1: [
           {
             title: '审核人',
             dataIndex: 'auditName',
@@ -244,9 +245,9 @@
       }
     },
     methods: {
-      linkQuery() {
+      linkQuery () {
         const query = this.$route.query
-        if (JSON.stringify(query) != "{}") {
+        if (JSON.stringify(query) !== '{}') {
           this.queryParam.id = query.id
         }
         this.getList()
@@ -264,8 +265,8 @@
           )
         })
       },
-      handleQuery3(row) {
-        this.imageTitle = "审批日志"
+      handleQuery3 (row) {
+        this.imageTitle = '审批日志'
         this.visible = true
         this.visible2 = false
         this.visible1 = false
@@ -278,9 +279,9 @@
       // 关闭模态框
       close () {
         this.visible = false
-        this.diagramUri = ""
-        this.imageUri = ""
-        this.imageTitle = ""
+        this.diagramUri = ''
+        this.imageUri = ''
+        this.imageTitle = ''
         this.list1 = []
         this.visible3 = false
         this.visible1 = false
