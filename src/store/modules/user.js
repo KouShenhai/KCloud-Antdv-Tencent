@@ -10,7 +10,7 @@ const user = {
     welcome: '',
     avatar: '',
     roles: [],
-    permissions:[]
+    permissions: []
   },
 
   mutations: {
@@ -36,8 +36,8 @@ const user = {
 
   actions: {
 
-    SSOLogin({ commit },token) {
-      return new Promise((resolve, reject) => {
+    SSOLogin ({ commit }, token) {
+      return new Promise((resolve) => {
         storage.set(ACCESS_TOKEN, token, 7 * 24 * 60 * 60 * 1000)
         commit('SET_TOKEN', token)
         resolve()
@@ -63,7 +63,7 @@ const user = {
       return new Promise((resolve, reject) => {
         getInfo().then(res => {
           const user = res.data
-          const id = user.userId;
+          const id = user.userId
           const name = user.username
           const avatar = user.imgUrl === '' ? require('@/assets/images/profile.jpg') : user.imgUrl
           if (user.permissionList && user.permissionList.length > 0) {
