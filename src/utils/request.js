@@ -34,7 +34,7 @@ const errorHandler = (error) => {
     notification.error({
       message: message,
       description: ''
-    },5000)
+    }, 5000)
     return Promise.reject(error)
 }
 
@@ -68,7 +68,7 @@ request.interceptors.response.use((res) => {
   if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer') {
     return res.data
   }
-  if (code === 401) {
+  if (code === 401 || code === 10021) {
     if (!isReloginShow) {
       isReloginShow = true
       notification.open({
