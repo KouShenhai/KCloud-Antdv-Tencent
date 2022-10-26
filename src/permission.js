@@ -43,6 +43,10 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
+    if (window.location.search.includes(ACCESS_TOKEN)) {
+      console.log(1111111)
+      next()
+    }
     if (allowList.includes(to.name)) {
       // 在免登录名单，直接进入
       next()

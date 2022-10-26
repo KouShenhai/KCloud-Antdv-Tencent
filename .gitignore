@@ -3,6 +3,10 @@
 
 # Log file
 *.log
+.idea
+.gitee
+dist
+node_modules
 
 # BlueJ files
 *.ctxt
