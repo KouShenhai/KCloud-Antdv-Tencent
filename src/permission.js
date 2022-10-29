@@ -18,12 +18,12 @@ router.beforeEach((to, from, next) => {
   to.meta && (typeof to.meta.title !== 'undefined' && setDocumentTitle(`${i18nRender(to.meta.title)} - ${domTitle}`))
   /* has token */
   if (storage.get(ACCESS_TOKEN)) {
-    if (to.path === loginRoutePath || to.path === '/') {
+    if (to.path === loginRoutePath) {
       next({ path: defaultRoutePath })
       NProgress.done()
     } else {
       // check login user.roles is null
-      if (store.getters.roles.length === 0) {
+      if (store.getters.permissions.length === 0) {
         // request login userInfo
         store
           .dispatch('GetInfo')
@@ -43,10 +43,6 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
-    if (window.location.search.includes(ACCESS_TOKEN)) {
-      console.log(1111111)
-      next()
-    }
     if (allowList.includes(to.name)) {
       // 在免登录名单，直接进入
       next()

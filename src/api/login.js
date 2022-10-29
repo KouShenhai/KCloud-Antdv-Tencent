@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 export const userApi = {
-  Login: '/auth/sys/auth/api/login',
+  Login: '/ump/oauth/token',
   Logout: '/auth/sys/auth/api/logout',
   UserInfo: '/auth/sys/auth/api/userInfo',
   Captcha: '/auth/sys/auth/api/captcha'
@@ -16,7 +16,12 @@ export function login (parameter) {
   return request({
     url: userApi.Login,
     method: 'post',
-    data: parameter
+    data: parameter,
+    // 设置序列化请求函数
+    transformRequest: (data = {}) => Object.entries(data).map(ent => ent.join('=')).join('&'),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    }
   })
 }
 

@@ -14,7 +14,13 @@
       <a-row :gutter="16">
         <a-col class="gutter-row" :span="16">
           <a-form-model-item prop="code">
-            <a-input v-model="form.captcha" allow-clear size="large" type="text" autocomplete="off" placeholder="请输入验证码">
+            <a-input
+              v-model="form.captcha"
+              allow-clear
+              size="large"
+              type="text"
+              autocomplete="off"
+              placeholder="请输入验证码">
               <a-icon slot="prefix" type="security-scan" :style="{ color: 'rgba(0,0,0,.25)' }"/>
             </a-input>
           </a-form-model-item>
@@ -111,15 +117,15 @@ export default {
         if (valid) {
           const encrypt = new JSEncrypt()
           encrypt.setPublicKey(this.publicKey)
-          const username = encrypt.encrypt(this.form.username)
-          const password = encrypt.encrypt(this.form.password)
+          const username = encodeURIComponent(encrypt.encrypt(this.form.username))
+          const password = encodeURIComponent(encrypt.encrypt(this.form.password))
           const uuid = this.form.uuid
           const captcha = this.form.captcha
-          const params = { username: username, password: password, captcha: captcha, uuid: uuid }
+          const params = { type: '0', username: username, password: password, captcha: captcha, uuid: uuid, grant_type: 'password', scope: 'auth', client_id: 'client_auth', client_secret: 'secret' }
           this.Login(params)
-            .then((res) => this.loginSuccess())
+            .then(() => this.loginSuccess())
             // eslint-disable-next-line handle-callback-err
-            .catch(err => this.requestFailed())
+            .catch(() => this.requestFailed())
             .finally(() => {
               this.logining = false
             })

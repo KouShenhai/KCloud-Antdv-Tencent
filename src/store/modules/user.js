@@ -7,9 +7,8 @@ const user = {
     token: '',
     name: '',
     id: '',
-    welcome: '',
+    welcome: '欢迎您，来到老寇云平台',
     avatar: '',
-    roles: [],
     permissions: []
   },
 
@@ -22,9 +21,6 @@ const user = {
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
-    },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles
     },
     SET_PERMISSIONS: (state, permissions) => {
       state.permissions = permissions
@@ -48,8 +44,8 @@ const user = {
     Login ({ commit }, loginParam) {
       return new Promise((resolve, reject) => {
         login(loginParam).then(res => {
-          storage.set(ACCESS_TOKEN, res.data.token, 7 * 24 * 60 * 60 * 1000)
-          commit('SET_TOKEN', res.data.token)
+          storage.set(ACCESS_TOKEN, res.access_token, 7 * 24 * 60 * 60 * 1000)
+          commit('SET_TOKEN', res.access_token)
           resolve()
         })
         .catch(error => {
@@ -68,9 +64,6 @@ const user = {
           const avatar = user.imgUrl === '' ? require('@/assets/images/profile.jpg') : user.imgUrl
           if (user.permissionList && user.permissionList.length > 0) {
             commit('SET_PERMISSIONS', user.permissionList)
-          }
-          if (user.roles && user.roles.length > 0) {
-            commit('SET_ROLES', user.roles)
           }
           commit('SET_NAME', name)
           commit('SET_AVATAR', avatar)
