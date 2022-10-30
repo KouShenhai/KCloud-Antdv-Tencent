@@ -25,12 +25,12 @@ const notFoundRouter = {
 // 根级菜单
 const rootMenu = {
   key: '',
-  name: '首页',
+  name: 'index',
   path: '',
-  component: constantRouterComponents.BasicLayout,
+  component: 'BasicLayout',
   redirect: '/index',
   meta: {
-    title: '工作台'
+    title: '根路由'
   },
   children: []
 }
@@ -38,7 +38,7 @@ const rootMenu = {
 // 根级路由
 const rootRouter = {
   key: '',
-  name: '首页',
+  name: 'index',
   path: '',
   component: constantRouterComponents.BasicLayout,
   redirect: '/index',
@@ -124,7 +124,7 @@ export const generator = (routerMap, parent, routers) => {
       // 路由名称，建议唯一
       name: name,
       // 该路由对应页面的 组件(动态加载)
-      component: () => import(`@/views${item.path}`),
+      component: (() => import(`@/views${item.path}`)),
       hidden: item.hidden,
       // meta: 页面标题, 菜单图标, 页面权限(供指令权限用，可去掉)
       meta: {
