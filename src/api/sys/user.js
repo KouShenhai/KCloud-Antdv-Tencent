@@ -64,7 +64,7 @@ export function changeUserStatus (data) {
 // 查询用户个人信息
 export function getUserInfo () {
   return request({
-    url: '/auth/sys/auth/api/userInfo',
+    url: '/ump/oauth/userInfo',
     method: 'get'
   })
 }
@@ -87,7 +87,7 @@ export function uploadAvatar (data) {
   })
 }
 
-//用户下拉列表
+// 用户下拉列表
 export function userOption () {
   return request({
     url: '/admin/sys/user/api/option/list',

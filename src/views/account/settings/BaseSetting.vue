@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { getUserInfo, updateInfo,uploadAvatar } from '@/api/sys/user'
+import { getUserInfo, updateInfo, uploadAvatar } from '@/api/sys/user'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -88,14 +88,14 @@ export default {
     this.getUser()
   },
   methods: {
-    uploadImg(data) {
+    uploadImg (data) {
       const formData = new FormData()
       formData.append('file', data.file)
       uploadAvatar(formData).then(response => {
         this.user.imgUrl = response.data.url
       })
     },
-    beforeUpload() {
+    beforeUpload () {
       return false
     },
     getUser () {

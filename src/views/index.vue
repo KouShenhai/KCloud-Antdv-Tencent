@@ -9,7 +9,6 @@
           <div class="content-title">
             {{ timeFix }}，{{ nickname }}<span class="welcome-text"></span>
           </div>
-          <span v-for="(w, index) in roles" :key="index">{{ w.name }}<a-divider type="vertical" v-if="index != roles.length - 1"/></span>
         </div>
       </div>
     </template>
@@ -38,7 +37,6 @@ export default {
   },
   data () {
     return {
-      roleNames:[],
       timeFix: timeFix()
     }
   },
@@ -46,15 +44,15 @@ export default {
     ...mapGetters([
       'avatar',
       'nickname',
-      'roles'
+      'deptIds'
     ]),
-    prop() {
+    prop () {
       return {
         subfield: false, // 单双栏模式
-        defaultOpen: "preview", //edit： 默认展示编辑区域 ， preview： 默认展示预览区域
+        defaultOpen: 'preview', // edit： 默认展示编辑区域 ， preview： 默认展示预览区域
         editable: false,
         toolbarsFlag: false,
-        scrollStyle: true,
+        scrollStyle: true
       }
     }
   },
@@ -66,7 +64,7 @@ export default {
   methods: {
     onSponsorTabChange (key, type) {
       this[type] = key
-    },
+    }
   }
 }
 </script>

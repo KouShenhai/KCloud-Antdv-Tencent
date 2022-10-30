@@ -9,7 +9,8 @@ const user = {
     id: '',
     welcome: '欢迎您，来到老寇云平台',
     avatar: '',
-    permissions: []
+    permissions: [],
+    deptIds: []
   },
 
   mutations: {
@@ -27,6 +28,9 @@ const user = {
     },
     SET_ID: (state, id) => {
       state.id = id
+    },
+    SET_DEPT_IDS: (state, deptIds) => {
+       state.deptIds = deptIds
     }
   },
 
@@ -64,6 +68,9 @@ const user = {
           const avatar = user.imgUrl === '' ? require('@/assets/images/profile.jpg') : user.imgUrl
           if (user.permissionList && user.permissionList.length > 0) {
             commit('SET_PERMISSIONS', user.permissionList)
+          }
+          if (user.deptIds && user.deptIds.length > 0) {
+            commit('SET_DEPT_IDS', user.deptIds)
           }
           commit('SET_NAME', name)
           commit('SET_AVATAR', avatar)
