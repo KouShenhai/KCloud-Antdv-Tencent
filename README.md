@@ -5,7 +5,7 @@ KCloud-Antdv 是LaoKou-Vue和Ant Design Vue Pro的结合。
 
 **LaoKou-Antdv**，使用[LaoKou-Vue](https://gitee.com/tttt_wmh_cn/KCloud-Platform) 作为后端，改其原有Element UI为Ant Design Vue。将会持续完全适配LaoKou-Vue。
 
-> LaoKou-Vue是基于SpringBoot，SpringCloud，Shiro，JWT，Vue 的前后端分离权限管理系统。
+> LaoKou-Vue是基于SpringBoot，SpringCloud，Shiro，Redis，Vue 的前后端分离权限管理系统。
 >
 > 拥有用户管理、菜单管理、角色管理、操作日志、登录日志、服务监控、连接池监视等功能。
 
@@ -50,7 +50,7 @@ KCloud-Antdv 是LaoKou-Vue和Ant Design Vue Pro的结合。
    ```
   
 ## 致谢
-* [LaoKou-Vue](https://gitee.com/y_project/RuoYi-Vue) 基于SpringBoot，SpringCloud，Shiro，JWT，Vue 的前后端分离权限管理系统
+* [LaoKou-Vue](https://gitee.com/y_project/RuoYi-Vue) 基于SpringBoot，SpringCloud，SpringSecurity，Redis，Vue 的前后端分离权限管理系统
 * [Ant Design Vue](https://github.com/vueComponent/ant-design-vue/) An enterprise-class UI components based on Ant Design and Vue
 * [Ant Design Vue Pro](https://github.com/vueComponent/ant-design-vue-pro) Use Ant Design Vue like a Pro
 * [mavonEditor](https://github.com/hinesboy/mavonEditor) markdown编辑器
