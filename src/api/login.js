@@ -4,7 +4,7 @@ export const userApi = {
   Login: '/ump/oauth/token',
   Logout: '/ump/oauth/logout',
   UserInfo: '/ump/oauth/userInfo',
-  Captcha: '/ump/oauth/captcha'
+  Captcha: '/auth/sys/auth/api/captcha'
 }
 
 /**
