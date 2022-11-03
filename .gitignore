@@ -7,6 +7,7 @@
 .gitee
 dist
 node_modules
+*.iml
 
 # BlueJ files
 *.ctxt
