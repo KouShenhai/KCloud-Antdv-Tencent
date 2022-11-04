@@ -9,7 +9,7 @@
           </a>
         </div>
         <div class="desc">
-          LaoKou-Vue是基于SpringBoot，SpringCloud，SpringSecurity，Redis，Vue 的前后端分离权限管理系统
+          LaoKou-Vue是基于SpringCloud，SpringSecurity，Redis，Vue 的前后端分离权限管理系统
         </div>
       </div>
 
