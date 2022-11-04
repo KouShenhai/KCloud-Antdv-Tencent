@@ -64,7 +64,7 @@ export function changeUserStatus (data) {
 // 查询用户个人信息
 export function getUserInfo () {
   return request({
-    url: '/ump/oauth/userInfo',
+    url: '/security/oauth/userInfo',
     method: 'get'
   })
 }
