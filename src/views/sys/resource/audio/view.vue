@@ -111,7 +111,7 @@
         </span>
       </a-table>
       <img v-show="visible2" :src="diagramUri" style="width: 100%;height: 100%">
-      <audio v-show="visible1" loop='loop' :src="audioUri" controls='controls'><object :data="audioUri" ><embed :src="audioUri" /></object></audio>
+      <audio v-show="visible1" loop="loop" :src="audioUri" controls="controls"><object :data="audioUri" ><embed :src="audioUri" /></object></audio>
     </a-modal>
   </page-header-wrapper>
 </template>
@@ -119,29 +119,29 @@
 <script>
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import storage from 'store'
-import { listAudio, delAudio,getAudio,getAuditLog,syncAudio } from '@/api/sys/audio'
+import { listAudio, delAudio, getAudio, getAuditLog, syncAudio } from '@/api/sys/audio'
 import CreateForm from './modules/CreateForm'
 import { tableMixin } from '@/store/table-mixin'
 export default {
-  name: 'Resource-Audio',
+  name: 'ResourceAudio',
   components: {
     CreateForm
   },
   mixins: [tableMixin],
   data () {
     return {
-      diagramUri: "",
-      audioTitle: "",
-      audioUri: "",
+      diagramUri: '',
+      audioTitle: '',
+      audioUri: '',
       list: [],
       list1: [],
       selectedRowKeys: [],
       selectedRows: [],
       // 高级搜索 展开/关闭
       advanced: false,
-      visible1 : false,
-      visible2 : false,
-      visible3 : false,
+      visible1: false,
+      visible2: false,
+      visible3: false,
       // 非单个禁用
       single: true,
       // 非多个禁用
@@ -151,7 +151,7 @@ export default {
       syncLoading: false,
       refreshing: false,
       total: 0,
-      visible:false,
+      visible: false,
       // 状态数据字典
       statusOptions: [],
       // 日期范围
@@ -161,7 +161,7 @@ export default {
         pageSize: 10,
         title: undefined,
         code: 'audio',
-        id: ""
+        id: ''
       },
       columns: [
         {
@@ -245,18 +245,18 @@ export default {
       this.linkQuery()
     }
   },
-  mounted() {
+  mounted () {
 
   },
   methods: {
-    linkQuery() {
+    linkQuery () {
       const query = this.$route.query
-      if (JSON.stringify(query) != "{}") {
+      if (JSON.stringify(query) !== '{}') {
         this.queryParam.id = query.id
       }
       this.getList()
     },
-    syncAudio() {
+    syncAudio () {
       const that = this
       that.loading = true
       that.syncLoading = true
@@ -272,9 +272,9 @@ export default {
     // 关闭模态框
     close () {
       this.visible = false
-      this.diagramUri = ""
-      this.audioUri = ""
-      this.audioTitle = ""
+      this.diagramUri = ''
+      this.audioUri = ''
+      this.audioTitle = ''
       this.list1 = []
       this.visible3 = false
       this.visible1 = false
@@ -290,7 +290,7 @@ export default {
         }
       )
     },
-    handleQuery1(row) {
+    handleQuery1 (row) {
       this.visible = true
       this.visible1 = true
       this.visible2 = false
@@ -301,16 +301,16 @@ export default {
         this.audioTitle = response.data.title
       })
     },
-    handleQuery2(row) {
+    handleQuery2 (row) {
       this.visible = true
       this.visible2 = true
       this.visible1 = false
       this.visible3 = false
-      this.audioTitle = "流程图"
-      this.diagramUri = process.env.VUE_APP_BASE_API + "/admin/sys/resource/audio/api/diagram?processInstanceId=" + row.processInstanceId + "&Authorization=" + storage.get(ACCESS_TOKEN)
+      this.audioTitle = '流程图'
+      this.diagramUri = process.env.VUE_APP_BASE_API + '/admin/sys/resource/audio/api/diagram?processInstanceId=' + row.processInstanceId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
     },
-    handleQuery3(row) {
-      this.audioTitle = "审批日志"
+    handleQuery3 (row) {
+      this.audioTitle = '审批日志'
       this.visible = true
       this.visible2 = false
       this.visible1 = false
@@ -325,21 +325,21 @@ export default {
       this.queryParam.pageNum = 1
       this.getList()
     },
-    statusFormat(res) {
-      if (res.status == 0) {
-        return "待审批"
-      } else if (res.status == 1) {
-        return "审批中"
-      } else if (res.status == 2) {
-        return "审批拒绝"
+    statusFormat (res) {
+      if (res.status === 0) {
+        return '待审批'
+      } else if (res.status === 1) {
+        return '审批中'
+      } else if (res.status === 2) {
+        return '审批拒绝'
       }
-      return "审批通过"
+      return '审批通过'
     },
-    auditStatusFormat(res) {
-      if (res.auditStatus == 0) {
-        return "审批驳回"
-      } else if (res.auditStatus == 1) {
-        return "审批通过"
+    auditStatusFormat (res) {
+      if (res.auditStatus === 0) {
+        return '审批驳回'
+      } else if (res.auditStatus === 1) {
+        return '审批通过'
       }
     },
     /** 重置按钮操作 */
@@ -350,7 +350,7 @@ export default {
         pageSize: 10,
         title: undefined,
         code: 'audio',
-        id: ""
+        id: ''
       }
       this.handleQuery()
     },

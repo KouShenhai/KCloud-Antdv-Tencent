@@ -118,29 +118,28 @@
 <script>
   import { ACCESS_TOKEN } from '@/store/mutation-types'
   import storage from 'store'
-  import { listImage, delImage,getImage,getAuditLog,syncImage } from '@/api/sys/image'
+  import { listImage, delImage, getImage, getAuditLog, syncImage } from '@/api/sys/image'
   import CreateForm from './modules/CreateForm'
   import { tableMixin } from '@/store/table-mixin'
-  import {syncAudio} from "@/api/sys/audio";
   export default {
-    name: 'Resource-Image',
+    name: 'ResourceImage',
     components: {
       CreateForm
     },
     mixins: [tableMixin],
     data () {
       return {
-        diagramUri: "",
-        imageTitle: "",
-        imageUri: "",
+        diagramUri: '',
+        imageTitle: '',
+        imageUri: '',
         list: [],
         selectedRowKeys: [],
         selectedRows: [],
         // 高级搜索 展开/关闭
         advanced: false,
-        visible1 : false,
-        visible2 : false,
-        visible3 : false,
+        visible1: false,
+        visible2: false,
+        visible3: false,
         // 非单个禁用
         single: true,
         syncLoading: false,
@@ -150,7 +149,7 @@
         loading: false,
         refreshing: false,
         total: 0,
-        visible:false,
+        visible: false,
         // 状态数据字典
         statusOptions: [],
         // 日期范围
@@ -252,7 +251,7 @@
         }
         this.getList()
       },
-      syncImage() {
+      syncImage () {
         const that = this
         that.loading = true
         that.syncLoading = true
@@ -297,7 +296,7 @@
           }
         )
       },
-      handleQuery1(row) {
+      handleQuery1 (row) {
         this.visible = true
         this.visible1 = true
         this.visible2 = false
@@ -307,34 +306,34 @@
           this.imageTitle = response.data.title
         })
       },
-      auditStatusFormat(res) {
-        if (res.auditStatus == 0) {
-          return "审批驳回"
-        } else if (res.auditStatus == 1) {
-          return "审批通过"
+      auditStatusFormat (res) {
+        if (res.auditStatus === 0) {
+          return '审批驳回'
+        } else if (res.auditStatus === 1) {
+          return '审批通过'
         }
       },
-      handleQuery2(row) {
+      handleQuery2 (row) {
         this.visible = true
         this.visible2 = true
         this.visible1 = false
-        this.imageTitle = "流程图"
-        this.diagramUri = process.env.VUE_APP_BASE_API + "/admin/sys/resource/image/api/diagram?processInstanceId=" + row.processInstanceId + "&Authorization=" + storage.get(ACCESS_TOKEN)
+        this.imageTitle = '流程图'
+        this.diagramUri = process.env.VUE_APP_BASE_API + '/admin/sys/resource/image/api/diagram?processInstanceId=' + row.processInstanceId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
       },
       /** 搜索按钮操作 */
       handleQuery () {
         this.queryParam.pageNum = 1
         this.getList()
       },
-      statusFormat(res) {
-        if (res.status == 0) {
-          return "待审批"
-        } else if (res.status == 1) {
-          return "审批中"
-        } else if (res.status == 2) {
-          return "审批拒绝"
+      statusFormat (res) {
+        if (res.status === 0) {
+          return '待审批'
+        } else if (res.status === 1) {
+          return '审批中'
+        } else if (res.status === 2) {
+          return '审批拒绝'
         }
-        return "审批通过"
+        return '审批通过'
       },
       /** 重置按钮操作 */
       resetQuery () {
@@ -344,7 +343,7 @@
           pageSize: 10,
           title: undefined,
           code: 'image',
-          id: ""
+          id: ''
         }
         this.handleQuery()
       },

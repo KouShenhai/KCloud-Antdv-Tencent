@@ -111,12 +111,12 @@
       </a-table>
       <img v-show="visible2" :src="diagramUri" style="width: 100%;height: 100%">
       <video
-            v-show="visible1"
-            :src='videoUri'
-            loop='loop'
-            width='200'
-            height='100'
-            controls='controls'><source :src='videoUri' type='video/mp4'><object :data='videoUri' width='200' height='100'><embed :src='videoUri' width='200' height='100' /></object></video>
+        v-show="visible1"
+        :src="videoUri"
+        loop="loop"
+        width="200"
+        height="100"
+        controls="controls"><source :src="videoUri" type="video/mp4"><object :data="videoUri" width="200" height="100"><embed :src="videoUri" width="200" height="100" /></object></video>
     </a-modal>
   </page-header-wrapper>
 </template>
@@ -129,7 +129,7 @@
   import { tableMixin } from '@/store/table-mixin'
 
   export default {
-    name: 'Resource-Video',
+    name: 'ResourceVideo',
     components: {
       CreateForm
     },
@@ -325,7 +325,7 @@
         this.visible2 = true
         this.visible1 = false
         this.videoTitle = '流程图'
-        this.diagramUri = process.env.VUE_APP_BASE_API + '/admin/sys/resource/video/api/diagram?processInstanceId=' + row.processInstanceId + "&Authorization=" + storage.get(ACCESS_TOKEN)
+        this.diagramUri = process.env.VUE_APP_BASE_API + '/admin/sys/resource/video/api/diagram?processInstanceId=' + row.processInstanceId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
       },
       /** 搜索按钮操作 */
       handleQuery () {
