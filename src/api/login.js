@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
 export const userApi = {
-  Login: '/security/oauth/token',
-  Logout: '/security/oauth/logout',
-  UserInfo: '/security/oauth/userInfo',
-  Captcha: '/security/oauth/captcha'
+  Login: '/auth/oauth/token',
+  Logout: '/auth/oauth/logout',
+  UserInfo: '/admin/sys/user/api/userInfo',
+  Captcha: '/auth/oauth/captcha'
 }
 
 /**

@@ -40,10 +40,6 @@
           @click="handleSubmit"
         >确定</a-button>
       </a-form-item>
-      <div class="user-login-other">
-        <a href="http://192.168.62.1:5555/auth/sys/loading.html" class="dd">单点登录</a>
-        <a href="https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2019121269782969&scope=auth_user&redirect_uri=http://192.168.62.1:5555/auth/sys/auth/api/zfbLogin" class="zfb">支付宝登录</a>
-      </div>
     </a-form-model>
   </div>
 </template>
@@ -79,29 +75,9 @@ export default {
 
   },
   mounted () {
-    this.checkLogin()
+    this.requestFailed()
   },
   methods: {
-    checkLogin () {
-      let queryAttr = window.location.search
-      let notLogin = true
-      if (queryAttr.length > 0) {
-        queryAttr = queryAttr.substring(1)
-        const data = queryAttr.split('&')
-        for (let i = 0; i < data.length; i++) {
-          const queryData = data[i].split('=')
-          // eslint-disable-next-line eqeqeq
-          if (queryData[0] == 'access_token') {
-            notLogin = false
-            this.SSOLogin(queryData[1])
-            this.loginSuccess()
-          }
-        }
-      }
-      if (notLogin) {
-        this.requestFailed()
-      }
-    },
     getUuid () {
       // eslint-disable-next-line no-constant-condition
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, 'x' ? (Math.random() * 16 | 0) : ('r&0x3' | '0x8')).toString(16)
@@ -110,7 +86,7 @@ export default {
       this.form.uuid = this.getUuid()
       this.codeUrl = process.env.VUE_APP_BASE_API + userApi.Captcha + '?uuid=' + this.form.uuid
     },
-    ...mapActions(['Login', 'Logout', 'SSOLogin']),
+    ...mapActions(['Login', 'Logout']),
     handleSubmit () {
       this.logining = true
       this.$refs.form.validate(valid => {
@@ -121,7 +97,7 @@ export default {
           const password = encodeURIComponent(encrypt.encrypt(this.form.password))
           const uuid = this.form.uuid
           const captcha = this.form.captcha
-          const params = { type: '0', username: username, password: password, captcha: captcha, uuid: uuid, grant_type: 'password', scope: 'auth', client_id: 'client_auth', client_secret: 'secret' }
+          const params = { username: username, password: password, captcha: captcha, uuid: uuid, grant_type: 'password', scope: 'auth', client_id: 'client_auth', client_secret: 'secret' }
           this.Login(params)
             .then(() => this.loginSuccess())
             // eslint-disable-next-line handle-callback-err

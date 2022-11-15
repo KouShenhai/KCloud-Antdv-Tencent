@@ -35,15 +35,6 @@ const user = {
   },
 
   actions: {
-
-    SSOLogin ({ commit }, token) {
-      return new Promise((resolve) => {
-        storage.set(ACCESS_TOKEN, token, 7 * 24 * 60 * 60 * 1000)
-        commit('SET_TOKEN', token)
-        resolve()
-      })
-    },
-
     // 登录
     Login ({ commit }, loginParam) {
       return new Promise((resolve, reject) => {
