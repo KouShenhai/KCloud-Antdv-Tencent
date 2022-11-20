@@ -142,9 +142,8 @@ export default {
           align: 'center'
         },
         {
-          title: '回调地址',
-          dataIndex: 'webServerRedirectUri',
-          ellipsis: true,
+          title: '刷新令牌秒数',
+          dataIndex: 'refreshTokenValidity',
           align: 'center'
         },
         {

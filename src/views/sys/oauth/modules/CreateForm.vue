@@ -90,19 +90,19 @@ export default {
       // 表单参数
       form: {
         id: undefined,
-        sort: 1,
-        accessTokenValidity: "",
-        additionalInformation: "",
-        authorities: "",
+        sort: 10,
+        accessTokenValidity: '',
+        additionalInformation: '',
+        authorities: '',
         authorizedGrantTypes: null,
-        types:[],
-        autoapprove: "",
-        clientId: "",
-        clientSecret: "",
-        refreshTokenValidity: "",
-        resourceIds: "",
-        scope: "",
-        webServerRedirectUri: ""
+        types: [],
+        autoapprove: '',
+        clientId: '',
+        clientSecret: '',
+        refreshTokenValidity: '',
+        resourceIds: '',
+        scope: '',
+        webServerRedirectUri: ''
       },
       open: false,
       rules: {
@@ -112,8 +112,6 @@ export default {
         scope: [{ required: true, message: '授权范围不能为空', trigger: 'blur' }],
         accessTokenValidity: [{ required: true, message: '令牌秒数不能为空', trigger: 'blur' }],
         refreshTokenValidity: [{ required: true, message: '刷新秒数不能为空', trigger: 'blur' }],
-        webServerRedirectUri: [{ required: true, message: '回调地址不能为空', trigger: 'blur' }],
-        autoapprove: [{ required: true, message: '自动授权不能为空', trigger: 'blur' }],
         sort: [{ required: true, message: '排序不能为空', trigger: 'blur' }]
       }
     }
@@ -139,19 +137,19 @@ export default {
     reset () {
       this.form = {
         id: undefined,
-        sort: 1,
-        accessTokenValidity: "",
-        additionalInformation: "",
-        authorities: "",
-        authorizedGrantTypes: "",
-        types:[],
-        autoapprove: "",
-        clientId: "",
-        clientSecret: "",
-        refreshTokenValidity: "",
-        resourceIds: "",
-        scope: "",
-        webServerRedirectUri: ""
+        sort: 10,
+        accessTokenValidity: '',
+        additionalInformation: '',
+        authorities: '',
+        authorizedGrantTypes: '',
+        types: [],
+        autoapprove: '',
+        clientId: '',
+        clientSecret: '',
+        refreshTokenValidity: '',
+        resourceIds: '',
+        scope: '',
+        webServerRedirectUri: ''
       }
     },
      /** 新增按钮操作 */
@@ -161,35 +159,38 @@ export default {
       this.open = true
       this.formTitle = '认证新增'
     },
-    /** 修改按钮操作 */
-    handleUpdate (row, ids) {
-      this.reset()
-      const id = row ? row.id : ids
+    handleDetail (id) {
       getOauth(id).then(response => {
         this.form.id = response.data.id
         this.form.sort = response.data.sort
         this.form.accessTokenValidity = response.data.accessTokenValidity - 0
         this.form.additionalInformation = response.data.additionalInformation
-        this.form.authorities =  response.data.authorities
-        this.form.types =  response.data.authorizedGrantTypes.split(",")
+        this.form.authorities = response.data.authorities
+        this.form.types = response.data.authorizedGrantTypes.split(',')
         this.form.autoapprove = response.data.autoapprove
         this.form.clientId = response.data.clientId
         this.form.clientSecret = response.data.clientSecret
         this.form.refreshTokenValidity = response.data.refreshTokenValidity - 0
         this.form.resourceIds = response.data.resourceIds
-        this.form.scope =  response.data.scope
-        this.form.webServerRedirectUri =  response.data.webServerRedirectUri
+        this.form.scope = response.data.scope
+        this.form.webServerRedirectUri = response.data.webServerRedirectUri
         this.open = true
-        this.formTitle = '认证修改'
       })
+    },
+    /** 修改按钮操作 */
+    handleUpdate (row, ids) {
+      this.reset()
+      const id = row ? row.id : ids
+      this.handleDetail(id)
+      this.formTitle = '认证修改'
     },
     /** 提交按钮 */
     submitForm: function () {
       this.$refs.form.validate(valid => {
         if (valid) {
           this.submitLoading = true
-          let types = this.form.types
-          this.form.authorizedGrantTypes = types.join(",")
+          const types = this.form.types
+          this.form.authorizedGrantTypes = types.join(',')
           if (this.form.id !== undefined) {
             updateOauth(this.form).then(response => {
               this.$message.success(
