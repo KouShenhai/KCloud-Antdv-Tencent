@@ -1,11 +1,10 @@
-<h1 align="center">LaoKou-Antdv</h1>
-KCloud-Antdv 是LaoKou-Vue和Ant Design Vue Pro的结合。
+<h1 align="center">KCloud-Antdv-Official</h1>
 
 ## 简介
 
-**LaoKou-Antdv**，使用[LaoKou-Vue](https://gitee.com/tttt_wmh_cn/KCloud-Platform) 作为后端，改其原有Element UI为Ant Design Vue。将会持续完全适配LaoKou-Vue。
+**KCloud-Antdv-Official**，使用[KCloud-Platform-Official](https://gitee.com/laokouyun/KCloud-Platform-Official) 作为后端
 
-> LaoKou-Vue是基于SpringCloud，SpringSecurity，Redis，Vue 的前后端分离权限管理系统。
+> KCloud-Platform-Official是基于SpringCloud，SpringSecurity，Redis，Vue 的前后端分离权限管理系统。
 >
 > 拥有用户管理、菜单管理、角色管理、操作日志、登录日志、服务监控、连接池监视等功能。
 
@@ -50,8 +49,9 @@ KCloud-Antdv 是LaoKou-Vue和Ant Design Vue Pro的结合。
    ```
   
 ## 致谢
-* [LaoKou-Vue](https://gitee.com/y_project/RuoYi-Vue) 基于SpringCloud，SpringSecurity，Redis，Vue 的前后端分离权限管理系统
-* [Ant Design Vue](https://github.com/vueComponent/ant-design-vue/) An enterprise-class UI components based on Ant Design and Vue
+* [RuoYi-Antdv](https://gitee.com/fuzui/RuoYi-Antdv) RuoYi-Vue版本+Ant Design Vue，将持续适配RuoYi-Vue
+* [Ruoyi-Vue](https://gitee.com/y_project/RuoYi-Vue) 🎉 基于SpringBoot，Spring Security，JWT，Vue & Element 的前后端分离权限管理系统，同时提供了 Vue3 的版本
+* [Ant Design Vue](https://github.com/vueComponent/ant-design-vue) An enterprise-class UI components based on Ant Design and Vue
 * [Ant Design Vue Pro](https://github.com/vueComponent/ant-design-vue-pro) Use Ant Design Vue like a Pro
 * [mavonEditor](https://github.com/hinesboy/mavonEditor) markdown编辑器
 
