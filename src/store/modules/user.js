@@ -82,7 +82,6 @@ const user = {
           reject(error)
         }).finally(() => {
           commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
           commit('SET_PERMISSIONS', [])
           storage.remove(ACCESS_TOKEN)
         })
