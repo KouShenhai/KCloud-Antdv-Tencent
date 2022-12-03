@@ -1,6 +1,6 @@
 import storage from 'store'
 import { login, getInfo, logout } from '@/api/login'
-import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { ACCESS_TOKEN, USER_ID, USER_NAME } from '@/store/mutation-types'
 
 const user = {
   state: {
@@ -66,6 +66,8 @@ const user = {
           commit('SET_NAME', name)
           commit('SET_AVATAR', avatar)
           commit('SET_ID', id)
+          storage.set(USER_ID, id, 7 * 24 * 60 * 60 * 1000)
+          storage.set(USER_NAME, name, 7 * 24 * 60 * 60 * 1000)
           resolve(res)
         }).catch(error => {
           reject(error)
