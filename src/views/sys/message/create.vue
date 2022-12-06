@@ -41,11 +41,6 @@
                 :scrollStyle="prop.scrollStyle"
               />
             </a-form-model-item>
-            <a-form-model-item prop="sendChannel">
-              <a-radio-group v-model="form.sendChannel" button-style="solid">
-                <a-radio-button value="0">平台</a-radio-button>
-              </a-radio-group>
-            </a-form-model-item>
             <a-form-model-item prop="receiver">
               <a-select
                 mode="multiple"
@@ -68,7 +63,7 @@
 import { saveMessage } from '@/api/sys/message'
 import Editor from '@/components/Editor'
 import { userOption } from '@/api/sys/user'
-import { uploadFile } from "@/api/sys/oss"
+import { uploadFile } from '@/api/sys/oss'
 export default {
   name: 'NoticeForm',
   components: {
@@ -76,7 +71,7 @@ export default {
   },
   data () {
     return {
-      userOptions:[],
+      userOptions: [],
       toolbars: {
         strikethrough: true, // 中划线
         subscript: true, // 下角标
@@ -110,7 +105,7 @@ export default {
         trash: true, // 清空
         save: true, // 保存（触发events中的save事件）
         /* 1.4.2 */
-        navigation: true, // 导航目录
+        navigation: true // 导航目录
       },
       labelCol: { span: 4 },
       wrapperCol: { span: 24 },
@@ -125,15 +120,13 @@ export default {
       form: {
         title: undefined,
         content: '',
-        sendChannel:0,
-        receiver:[],
-        type:'1'
+        receiver: [],
+        type: '1'
       },
       baseRules: {
         title: [{ required: true, message: '标题不能为空', trigger: 'blur' }],
         content: [{ required: true, message: '内容不能为空', trigger: 'blur' }],
-        sendChannel: [{ required: true, message: '发送渠道不能为空', trigger: 'blur' }],
-        receiver: [{ required: true, message: '接收人不能为空', trigger: 'change' }],
+        receiver: [{ required: true, message: '接收人不能为空', trigger: 'change' }]
       }
     }
   },
@@ -143,12 +136,12 @@ export default {
 
   },
   computed: {
-    prop() {
+    prop () {
       return {
         subfield: false, // 单双栏模式
-        defaultOpen: "edit", //edit： 默认展示编辑区域 ， preview： 默认展示预览区域
+        defaultOpen: 'edit', // edit： 默认展示编辑区域 ， preview： 默认展示预览区域
         editable: true,
-        scrollStyle: true,
+        scrollStyle: true
       }
     }
   },
@@ -158,25 +151,24 @@ export default {
     this.formTitle = this.$route.params.formTitle
     this.handleAdd()
     userOption().then(response => {
-      this.userOptions = response.data;
+      this.userOptions = response.data
     })
   },
   methods: {
-    imgAdd(pos,file) {
-      let imgData = new FormData();
-      imgData.append('file',file);
-      uploadFile(imgData).then(res=>{
-        this.$refs.content.$img2Url(pos,res.data.url)
-      });
+    imgAdd (pos, file) {
+      const imgData = new FormData()
+      imgData.append('file', file)
+      uploadFile(imgData).then(res => {
+        this.$refs.content.$img2Url(pos, res.data.url)
+      })
     },
     // 表单重置
     reset () {
       this.form = {
         title: undefined,
         content: '',
-        sendChannel:0,
-        receiver:[],
-        type:'1'
+        receiver: [],
+        type: '1'
       }
     },
      /** 新增按钮操作 */
