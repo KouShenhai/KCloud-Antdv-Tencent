@@ -12,7 +12,7 @@
           <a-button type="primary" :loading="submitLoading" @click="submitForm('1')">
             同意
           </a-button>
-          <a-button type="danger" :loading="submitLoading"  @click="submitForm('0')">
+          <a-button type="danger" :loading="submitLoading" @click="submitForm('0')">
             驳回
           </a-button>
         </a-space>
@@ -38,19 +38,19 @@ export default {
       // 表单参数
       form: {
         comment: '',
-        taskId:'',
-        taskName:'',
-        instanceId:'',
-        businessKey:"",
-        instanceName:"",
-        definitionId: "",
+        taskId: '',
+        taskName: '',
+        instanceId: '',
+        businessKey: '',
+        instanceName: '',
+        definitionId: '',
         values: {
           auditStatus: ''
         }
       },
       open: false,
       rules: {
-        comment: [{ required: true, message: '审批意见不为空', trigger: 'blur' }],
+        comment: [{ required: true, message: '审批意见不为空', trigger: 'blur' }]
       }
     }
   },
@@ -76,12 +76,12 @@ export default {
     reset () {
       this.form = {
         comment: '',
-        taskId:'',
-        taskName:'',
-        instanceId:'',
-        businessKey:"",
-        instanceName:"",
-        definitionId: "",
+        taskId: '',
+        taskName: '',
+        instanceId: '',
+        businessKey: '',
+        instanceName: '',
+        definitionId: '',
         values: {
           auditStatus: ''
         }
