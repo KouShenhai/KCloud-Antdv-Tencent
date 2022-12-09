@@ -315,8 +315,8 @@ export default {
       this.visible2 = false
       this.visible1 = false
       this.visible3 = true
-      const resourceId = row.id
-      getAuditLog(resourceId).then(response => {
+      const businessId = row.id
+      getAuditLog(businessId).then(response => {
         this.list1 = response.data
       })
     },

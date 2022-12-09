@@ -61,8 +61,8 @@
             <a-icon type="delete" />
             删除
           </a>
-          <a-divider type="vertical"  v-hasPermi="['workflow:definition:image']"/>
-          <a @click="getDefinition(record)"  v-hasPermi="['workflow:definition:image']">
+          <a-divider type="vertical"  v-hasPermi="['workflow:definition:diagram']"/>
+          <a @click="getDefinition(record)"  v-hasPermi="['workflow:definition:diagram']">
             <a-icon type="eye" />
             查看
           </a>
@@ -185,7 +185,7 @@ export default {
         }
       )
     },
-    getDefinition(row) {
+    getDefinition (row) {
       this.visible = true
       this.flowUri = process.env.VUE_APP_BASE_API + '/admin/workflow/definition/api/image?definitionId=' + row.definitionId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
     },
@@ -204,7 +204,7 @@ export default {
       }
       this.handleQuery()
     },
-    suspendFlow(row) {
+    suspendFlow (row) {
       const that = this
       suspendDefinition(row.definitionId).then(response => {
         that.getList()
@@ -214,7 +214,7 @@ export default {
         )
       })
     },
-    activateFlow(row) {
+    activateFlow (row) {
       const that = this
       activateDefinition(row.definitionId).then(response => {
         that.getList()

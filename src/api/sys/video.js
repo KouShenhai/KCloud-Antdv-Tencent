@@ -58,9 +58,9 @@ export function uploadFile (data) {
   })
 }
 
-export function getAuditLog (resourceId) {
+export function getAuditLog (businessId) {
   return request({
-    url: '/admin/sys/resource/video/api/auditLog?resourceId=' + resourceId,
+    url: '/admin/sys/resource/video/api/auditLog?businessId=' + businessId,
     method: 'get'
   })
 }
