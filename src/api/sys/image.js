@@ -71,3 +71,10 @@ export function syncImage () {
     method: 'post'
   })
 }
+
+export function createImage () {
+  return request({
+    url: '/admin/sys/resource/image/api/create?code=image',
+    method: 'post'
+  })
+}

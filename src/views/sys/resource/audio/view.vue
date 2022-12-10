@@ -28,8 +28,11 @@
         <a-button type="primary" @click="$refs.createForm.handleAdd()" v-hasPermi="['sys:resource:audio:insert']">
           <a-icon type="plus" />新增
         </a-button>
+        <a-button :loading="createLoading" type="dashed" @click="createAudio()" v-hasPermi="['sys:resource:audio:create']">
+          <a-icon type="diff" />创建
+        </a-button>
         <a-button :loading="syncLoading" type="danger" @click="syncAudio()" v-hasPermi="['sys:resource:audio:sync']">
-          <a-icon type="reload" />同步
+          <a-icon type="snippets" />同步
         </a-button>
       </div>
       <!-- 增加修改 -->
@@ -119,7 +122,7 @@
 <script>
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import storage from 'store'
-import { listAudio, delAudio, getAudio, getAuditLog, syncAudio } from '@/api/sys/audio'
+import { listAudio, delAudio, getAudio, getAuditLog, syncAudio, createAudio } from '@/api/sys/audio'
 import CreateForm from './modules/CreateForm'
 import { tableMixin } from '@/store/table-mixin'
 export default {
@@ -149,6 +152,7 @@ export default {
       ids: [],
       loading: false,
       syncLoading: false,
+      createLoading: false,
       refreshing: false,
       total: 0,
       visible: false,
@@ -258,13 +262,23 @@ export default {
     },
     syncAudio () {
       const that = this
-      that.loading = true
       that.syncLoading = true
-      syncAudio().then(response => {
+      syncAudio().then(() => {
         that.syncLoading = false
         that.loading = false
         that.$message.success(
-          '同步成功',
+          '正在异步同步数据，详情请查看日志',
+          3
+        )
+      })
+    },
+    createAudio () {
+      const that = this
+      that.createLoading = true
+      createAudio().then(() => {
+        that.createLoading = false
+        that.$message.success(
+          '正在创建索引，详情请查看日志',
           3
         )
       })

@@ -71,3 +71,10 @@ export function syncAudio () {
     method: 'post'
   })
 }
+
+export function createAudio () {
+  return request({
+    url: '/admin/sys/resource/audio/api/create?code=audio',
+    method: 'post'
+  })
+}

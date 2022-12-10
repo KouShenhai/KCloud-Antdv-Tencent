@@ -28,8 +28,11 @@
         <a-button type="primary" @click="$refs.createForm.handleAdd()" v-hasPermi="['sys:resource:video:insert']">
           <a-icon type="plus" />新增
         </a-button>
+        <a-button :loading="createLoading" type="dashed" @click="createVideo()" v-hasPermi="['sys:resource:video:create']">
+          <a-icon type="diff" />创建
+        </a-button>
         <a-button :loading="syncLoading" type="danger" @click="syncVideo()" v-hasPermi="['sys:resource:video:sync']">
-          <a-icon type="reload" />同步
+          <a-icon type="snippets" />同步
         </a-button>
       </div>
       <!-- 增加修改 -->
@@ -124,7 +127,7 @@
 <script>
   import { ACCESS_TOKEN } from '@/store/mutation-types'
   import storage from 'store'
-  import { listVideo, delVideo, getVideo, getAuditLog, syncVideo } from '@/api/sys/video'
+  import { listVideo, delVideo, getVideo, getAuditLog, syncVideo, createVideo } from '@/api/sys/video'
   import CreateForm from './modules/CreateForm'
   import { tableMixin } from '@/store/table-mixin'
 
@@ -143,6 +146,7 @@
         selectedRowKeys: [],
         selectedRows: [],
         syncLoading: false,
+        createLoading: false,
         // 高级搜索 展开/关闭
         advanced: false,
         visible1: false,
@@ -260,13 +264,22 @@
       },
       syncVideo () {
         const that = this
-        that.loading = true
         that.syncLoading = true
-        syncVideo().then(response => {
-          that.loading = false
+        syncVideo().then(() => {
           that.syncLoading = false
           that.$message.success(
-            '同步成功',
+            '正在异步同步数据，详情请查看日志',
+            3
+          )
+        })
+      },
+      createVideo () {
+        const that = this
+        that.createLoading = true
+        createVideo().then(() => {
+          that.createLoading = false
+          that.$message.success(
+            '正在创建索引，详情请查看日志',
             3
           )
         })

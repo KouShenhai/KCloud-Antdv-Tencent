@@ -28,8 +28,11 @@
         <a-button type="primary" @click="$refs.createForm.handleAdd()" v-hasPermi="['sys:resource:image:insert']">
           <a-icon type="plus" />新增
         </a-button>
+        <a-button :loading="createLoading" type="dashed" @click="createImage()" v-hasPermi="['sys:resource:image:create']">
+          <a-icon type="diff" />创建
+        </a-button>
         <a-button :loading="syncLoading" type="danger" @click="syncImage()" v-hasPermi="['sys:resource:image:sync']">
-          <a-icon type="reload" />同步
+          <a-icon type="snippets" />同步
         </a-button>
       </div>
       <!-- 增加修改 -->
@@ -118,7 +121,7 @@
 <script>
   import { ACCESS_TOKEN } from '@/store/mutation-types'
   import storage from 'store'
-  import { listImage, delImage, getImage, getAuditLog, syncImage } from '@/api/sys/image'
+  import { listImage, delImage, getImage, getAuditLog, syncImage, createImage } from '@/api/sys/image'
   import CreateForm from './modules/CreateForm'
   import { tableMixin } from '@/store/table-mixin'
   export default {
@@ -143,6 +146,7 @@
         // 非单个禁用
         single: true,
         syncLoading: false,
+        createLoading: false,
         // 非多个禁用
         multiple: true,
         ids: [],
@@ -253,13 +257,22 @@
       },
       syncImage () {
         const that = this
-        that.loading = true
         that.syncLoading = true
-        syncImage().then(response => {
-          that.loading = false
+        syncImage().then(() => {
           that.syncLoading = false
           that.$message.success(
-            '同步成功',
+            '正在异步同步数据，详情请查看日志',
+            3
+          )
+        })
+      },
+      createImage () {
+        const that = this
+        that.createLoading = true
+        createImage().then(() => {
+          that.createLoading = false
+          that.$message.success(
+            '正在创建索引，详情请查看日志',
             3
           )
         })

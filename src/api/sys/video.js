@@ -71,3 +71,10 @@ export function syncVideo () {
     method: 'post'
   })
 }
+
+export function createVideo () {
+  return request({
+    url: '/admin/sys/resource/video/api/create?code=video',
+    method: 'post'
+  })
+}
