@@ -44,7 +44,7 @@
             <a-form-model-item prop="receiver">
               <a-select
                 mode="multiple"
-                v-model="form.receiver"
+                v-model="form.platformReceiver"
                 placeholder="请选择">
                 <a-select-option v-for="(d, index) in userOptions" :key="index" :value="d.value">
                   {{ d.label }}
@@ -120,13 +120,13 @@ export default {
       form: {
         title: undefined,
         content: '',
-        receiver: [],
-        type: '1'
+        platformReceiver: [],
+        type: '0'
       },
       baseRules: {
         title: [{ required: true, message: '标题不能为空', trigger: 'blur' }],
         content: [{ required: true, message: '内容不能为空', trigger: 'blur' }],
-        receiver: [{ required: true, message: '接收人不能为空', trigger: 'change' }]
+        platformReceiver: [{ required: true, message: '接收人不能为空', trigger: 'change' }]
       }
     }
   },
@@ -167,8 +167,8 @@ export default {
       this.form = {
         title: undefined,
         content: '',
-        receiver: [],
-        type: '1'
+        platformReceiver: [],
+        type: '0'
       }
     },
      /** 新增按钮操作 */
