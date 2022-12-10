@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 // 分页
-export function pageProcess (query) {
+export function pageTask (query) {
   return request({
     url: '/admin/workflow/task/api/resource/query',
     method: 'post',
@@ -15,5 +15,13 @@ export function auditTask (query) {
     url: '/admin/workflow/task/api/resource/audit',
     method: 'post',
     data: query
+  })
+}
+
+// 详情
+export function detailTask (id) {
+  return request({
+    url: '/admin/workflow/task/api/resource/detail?id=' + id,
+    method: 'get'
   })
 }

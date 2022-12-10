@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { pageProcess } from '@/api/workflow/process'
+import { pageTask } from '@/api/workflow/task'
 import { tableMixin } from '@/store/table-mixin'
 import CreateForm from './modules/CreateForm'
 export default {
@@ -143,7 +143,7 @@ export default {
     /** 查询流程定义列表 */
     getList () {
       this.loading = true
-      pageProcess(this.queryParam).then(response => {
+      pageTask(this.queryParam).then(response => {
           this.list = response.data.records
           this.total = response.data.total - 0
           this.loading = false

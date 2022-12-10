@@ -9,7 +9,7 @@
       </a-form-model-item>
       <a-form-model-item label="资源">
         <a-input v-model="form.uri" placeholder="请上传资源" style="display: none" />
-        <a-upload name="file"  @change="uploadFile" accept=".gif,.GIF,.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.bmp,.BMP,.webp,.WEBP" :before-upload="beforeUpload">
+        <a-upload name="file" @change="uploadFile" accept=".gif,.GIF,.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.bmp,.BMP,.webp,.WEBP" :before-upload="beforeUpload">
           <a-button :disabled="disabled">
             上传图片
           </a-button>
@@ -17,7 +17,7 @@
         <img :src="form.uri" width="100" height="100"/>
       </a-form-model-item>
       <a-form-model-item label="标签" prop="tags">
-        <template v-for="(tag, index) in tags">
+        <template v-for="(tag) in tags">
           <a-tag
             color="#f50"
             :key="tag"
@@ -59,7 +59,7 @@
 
 <script>
 
-  import { getImage, addImage, updateImage,uploadImage,uploadFile } from '@/api/sys/image'
+  import { getImage, addImage, updateImage, uploadImage, uploadFile } from '@/api/sys/image'
 
   export default {
     name: 'CreateForm',
@@ -79,16 +79,16 @@
           uri: undefined,
           md5: undefined,
           tags: undefined,
-          code:"image",
-          remark:undefined,
-          processInstanceId:undefined
+          code: 'image',
+          remark: undefined,
+          processInstanceId: undefined
         },
-        disabled:false,
+        disabled: false,
         open: false,
         display: false,
         rules: {
           title: [{ required: true, message: '标题不能为空', trigger: 'blur' }],
-          remark: [{ required: true, message: '备注不能为空', trigger: 'blur' }],
+          remark: [{ required: true, message: '备注不能为空', trigger: 'blur' }]
         }
       }
     },
@@ -146,12 +146,12 @@
           uri: undefined,
           md5: undefined,
           tags: undefined,
-          code:"image",
+          code: 'image',
           remark: undefined,
-          processInstanceId:undefined
+          processInstanceId: undefined
         }
       },
-      uploadFile(data) {
+      uploadFile (data) {
         if (data.fileList.length > 0) {
           this.disabled = true
           const formData = new FormData()
@@ -175,7 +175,7 @@
           this.form.md5 = undefined
         }
       },
-      beforeUpload() {
+      beforeUpload () {
         return false
       },
       /** 新增按钮操作 */
@@ -191,11 +191,11 @@
         const id = row ? row.id : ids
         getImage(id).then(response => {
           this.form.id = response.data.id
-          this.tags = response.data.tags.split(",")
+          this.tags = response.data.tags.split(',')
           this.form.uri = response.data.uri
           this.form.md5 = response.data.md5
           this.form.title = response.data.title
-          this.form.code = "image"
+          this.form.code = 'image'
           this.display = true
           this.form.processInstanceId = response.data.processInstanceId
           this.form.remark = response.data.remark
@@ -208,7 +208,7 @@
         this.$refs.form.validate(valid => {
           if (valid) {
             this.submitLoading = true
-            this.form.tags = this.tags.join(",")
+            this.form.tags = this.tags.join(',')
             if (this.form.id !== undefined) {
               updateImage(this.form).then(response => {
                 this.$message.success(
