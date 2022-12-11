@@ -12,8 +12,8 @@
     >
       <template slot="content">
         <a-spin :spinning="loading">
-          <a-tabs v-model="noticeType" @change="changeType">
-            <a-tab-pane :key="noticeType" :tab="noticeType">
+          <a-tabs v-model="queryParam.type" @change="changeType">
+            <a-tab-pane v-for="d in typeOptions" :key="d.value" :tab="d.label">
               <a-list style="max-height: 200px; overflow:auto;">
                 <div
                   v-if="showLoadingMore"
@@ -67,10 +67,19 @@ export default {
       visible: false,
       queryParam: {
         pageNum: 1,
-        pageSize: 5
+        pageSize: 5,
+        type: 0
       },
       list: [],
-      noticeType: '消息通知'
+      typeOptions: [
+        {
+          label: '通知',
+          value: 0
+        },
+        {
+          label: '提醒',
+          value: 1
+        }]
     }
   },
   mounted () {
@@ -107,13 +116,14 @@ export default {
     resetQuery () {
       this.queryParam = {
         pageNum: 1,
-        pageSize: 5
+        pageSize: 5,
+        type: 0
       }
       this.list = []
     },
     changeType (key) {
       this.resetQuery()
-      this.queryParam.noticeType = key
+      this.queryParam.type = key
       this.getList()
     },
     onLoadMore () {

@@ -109,7 +109,7 @@ export default {
         pageNum: 1,
         pageSize: 10,
         clientId: undefined,
-        clientSecret: undefined,
+        clientSecret: undefined
       },
       columns: [
         {
@@ -193,7 +193,7 @@ export default {
         pageNum: 1,
         pageSize: 10,
         clientId: undefined,
-        clientSecret: undefined,
+        clientSecret: undefined
       }
       this.handleQuery()
     },
