@@ -28,10 +28,13 @@
         <a-button type="primary" @click="$refs.createForm.handleAdd()" v-hasPermi="['sys:resource:audio:insert']">
           <a-icon type="plus" />新增
         </a-button>
-        <a-button :loading="createLoading" type="dashed" @click="createAudio()" v-hasPermi="['sys:resource:audio:create']">
+        <a-button :loading="deleteLoading" type="dashed" @click="deleteIndex()" v-hasPermi="['sys:resource:audio:deleteIndex']">
+          <a-icon type="delete" />删除
+        </a-button>
+        <a-button :loading="createLoading" @click="createIndex()" v-hasPermi="['sys:resource:audio:createIndex']">
           <a-icon type="diff" />创建
         </a-button>
-        <a-button :loading="syncLoading" type="danger" @click="syncAudio()" v-hasPermi="['sys:resource:audio:sync']">
+        <a-button :loading="syncLoading" type="danger" @click="syncIndex()" v-hasPermi="['sys:resource:audio:syncIndex']">
           <a-icon type="snippets" />同步
         </a-button>
       </div>
@@ -122,7 +125,7 @@
 <script>
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import storage from 'store'
-import { listAudio, delAudio, getAudio, getAuditLog, syncAudio, createAudio } from '@/api/sys/audio'
+import { listAudio, delAudio, getAudio, getAuditLog, syncIndex, createIndex, deleteIndex } from '@/api/sys/audio'
 import CreateForm from './modules/CreateForm'
 import { tableMixin } from '@/store/table-mixin'
 export default {
@@ -153,6 +156,7 @@ export default {
       loading: false,
       syncLoading: false,
       createLoading: false,
+      deleteLoading: false,
       refreshing: false,
       total: 0,
       visible: false,
@@ -260,10 +264,10 @@ export default {
       }
       this.getList()
     },
-    syncAudio () {
+    syncIndex () {
       const that = this
       that.syncLoading = true
-      syncAudio().then(() => {
+      syncIndex().then(() => {
         that.syncLoading = false
         that.loading = false
         that.$message.success(
@@ -272,13 +276,24 @@ export default {
         )
       })
     },
-    createAudio () {
+    createIndex () {
       const that = this
       that.createLoading = true
-      createAudio().then(() => {
+      createIndex().then(() => {
         that.createLoading = false
         that.$message.success(
           '正在创建索引，详情请查看日志',
+          3
+        )
+      })
+    },
+    deleteIndex () {
+      const that = this
+      that.deleteLoading = true
+      deleteIndex().then(() => {
+        that.deleteLoading = false
+        that.$message.success(
+          '正在删除索引，详情请查看日志',
           3
         )
       })

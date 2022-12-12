@@ -65,16 +65,23 @@ export function getAuditLog (businessId) {
   })
 }
 
-export function syncAudio () {
+export function syncIndex () {
   return request({
-    url: '/admin/sys/resource/audio/api/sync?code=audio',
+    url: '/admin/sys/resource/audio/api/syncIndex?code=audio',
     method: 'post'
   })
 }
 
-export function createAudio () {
+export function createIndex () {
   return request({
-    url: '/admin/sys/resource/audio/api/create?code=audio',
+    url: '/admin/sys/resource/audio/api/createIndex?code=audio',
     method: 'post'
+  })
+}
+
+export function deleteIndex () {
+  return request({
+    url: '/admin/sys/resource/audio/api/deleteIndex?code=audio',
+    method: 'delete'
   })
 }

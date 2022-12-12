@@ -28,10 +28,13 @@
         <a-button type="primary" @click="$refs.createForm.handleAdd()" v-hasPermi="['sys:resource:image:insert']">
           <a-icon type="plus" />新增
         </a-button>
-        <a-button :loading="createLoading" type="dashed" @click="createImage()" v-hasPermi="['sys:resource:image:create']">
+        <a-button :loading="deleteLoading" type="dashed" @click="deleteIndex()" v-hasPermi="['sys:resource:image:deleteIndex']">
+          <a-icon type="delete" />删除
+        </a-button>
+        <a-button :loading="createLoading" type="dashed" @click="createIndex()" v-hasPermi="['sys:resource:image:createIndex']">
           <a-icon type="diff" />创建
         </a-button>
-        <a-button :loading="syncLoading" type="danger" @click="syncImage()" v-hasPermi="['sys:resource:image:sync']">
+        <a-button :loading="syncLoading" type="danger" @click="syncIndex()" v-hasPermi="['sys:resource:image:syncIndex']">
           <a-icon type="snippets" />同步
         </a-button>
       </div>
@@ -121,7 +124,7 @@
 <script>
   import { ACCESS_TOKEN } from '@/store/mutation-types'
   import storage from 'store'
-  import { listImage, delImage, getImage, getAuditLog, syncImage, createImage } from '@/api/sys/image'
+  import { listImage, delImage, getImage, getAuditLog, syncIndex, createIndex, deleteIndex } from '@/api/sys/image'
   import CreateForm from './modules/CreateForm'
   import { tableMixin } from '@/store/table-mixin'
   export default {
@@ -147,6 +150,7 @@
         single: true,
         syncLoading: false,
         createLoading: false,
+        deleteLoading: false,
         // 非多个禁用
         multiple: true,
         ids: [],
@@ -255,10 +259,10 @@
         }
         this.getList()
       },
-      syncImage () {
+      syncIndex () {
         const that = this
         that.syncLoading = true
-        syncImage().then(() => {
+        syncIndex().then(() => {
           that.syncLoading = false
           that.$message.success(
             '正在异步同步数据，详情请查看日志',
@@ -266,13 +270,24 @@
           )
         })
       },
-      createImage () {
+      createIndex () {
         const that = this
         that.createLoading = true
-        createImage().then(() => {
+        createIndex().then(() => {
           that.createLoading = false
           that.$message.success(
             '正在创建索引，详情请查看日志',
+            3
+          )
+        })
+      },
+      deleteIndex () {
+        const that = this
+        that.deleteLoading = true
+        deleteIndex().then(() => {
+          that.deleteLoading = false
+          that.$message.success(
+            '正在删除索引，详情请查看日志',
             3
           )
         })
