@@ -31,7 +31,7 @@
         <a-button :loading="deleteLoading" type="dashed" @click="deleteIndex()" v-hasPermi="['sys:resource:image:deleteIndex']">
           <a-icon type="delete" />删除
         </a-button>
-        <a-button :loading="createLoading" type="dashed" @click="createIndex()" v-hasPermi="['sys:resource:image:createIndex']">
+        <a-button :loading="createLoading" @click="createIndex()" v-hasPermi="['sys:resource:image:createIndex']">
           <a-icon type="diff" />创建
         </a-button>
         <a-button :loading="syncLoading" type="danger" @click="syncIndex()" v-hasPermi="['sys:resource:image:syncIndex']">
