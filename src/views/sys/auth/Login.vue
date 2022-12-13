@@ -26,7 +26,7 @@
           </a-form-model-item>
         </a-col>
         <a-col class="gutter-row" :span="8">
-          <img class="getCaptcha" :src="codeUrl" @click="getCode">
+          <img alt="验证码" class="getCaptcha" :src="codeUrl" @click="getCode">
         </a-col>
       </a-row>
       <a-form-item>
@@ -47,7 +47,7 @@
 <script>
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
-import { userApi } from '@/api/login'
+import { captcha } from '@/api/login'
 import { JSEncrypt } from 'jsencrypt'
 export default {
   name: 'Login',
@@ -84,7 +84,9 @@ export default {
     },
     getCode () {
       this.form.uuid = this.getUuid()
-      this.codeUrl = process.env.VUE_APP_BASE_API + userApi.Captcha + '?uuid=' + this.form.uuid
+      captcha(this.form.uuid).then(res => {
+        this.codeUrl = res.data
+      })
     },
     ...mapActions(['Login', 'Logout']),
     handleSubmit () {

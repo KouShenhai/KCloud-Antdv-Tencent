@@ -25,6 +25,13 @@ export function login (parameter) {
   })
 }
 
+export function captcha (uuid) {
+  return request({
+    url: userApi.Captcha + '?uuid=' + uuid,
+    method: 'get'
+  })
+}
+
 export function getInfo () {
   return request({
     url: userApi.UserInfo,
