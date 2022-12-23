@@ -15,5 +15,5 @@ export const printANSI = () => {
 `
   console.log(`%c${text}`, 'color: #fc4d50')
   console.log('%cGitee: https://gitee.com/laokouyun/KCloud-Platform-Tencent', 'color: #fff; font-size: 14px; font-weight: 300; text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;')
-  console.log('%cGitee: https://gitee.com/laokouyun/KCloud-Antdv-Officail', 'color: #fff; font-size: 14px; font-weight: 300; text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;')
+  console.log('%cGitee: https://gitee.com/laokouyun/KCloud-Antdv-Tencnet', 'color: #fff; font-size: 14px; font-weight: 300; text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;')
 }
