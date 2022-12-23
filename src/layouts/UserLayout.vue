@@ -5,11 +5,11 @@
         <div class="header">
           <a href="/">
             <img src="~@/assets/logo.png" class="logo" alt="logo">
-            <span class="title">KCloud-Antdv-Official</span>
+            <span class="title">KCloud-Antdv-Tencent</span>
           </a>
         </div>
         <div class="desc">
-          KCloud-Platform-Official是基于SpringCloud，SpringSecurity，Redis，Vue 的前后端分离权限管理系统
+          KCloud-Platform-Tencent是基于SpringCloud，SpringSecurity，Redis，Vue 的前后端分离权限管理系统
         </div>
       </div>
 
@@ -22,7 +22,7 @@
           <a href="#" target="_blank">条款</a>
         </div>
         <div class="copyright">
-          Copyright &copy; 2022 <a href="#" target="_blank">KCloud-Antdv-Official</a><br/>
+          Copyright &copy; 2022 <a href="#" target="_blank">KCloud-Antdv-Tencent</a><br/>
         </div>
       </div>
     </div>

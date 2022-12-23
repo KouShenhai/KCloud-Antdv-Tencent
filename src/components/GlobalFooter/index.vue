@@ -6,7 +6,7 @@
       <a href="#" target="_blank">条款</a>
     </template>
     <template v-slot:copyright>
-      Copyright &copy; 2022 <a href="#" target="_blank">KCloud-Antdv-Official</a><br/>
+      Copyright &copy; 2022 <a href="#" target="_blank">KCloud-Antdv-Tencent</a><br/>
     </template>
   </global-footer>
 </template>
