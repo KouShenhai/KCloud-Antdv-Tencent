@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
 export const userApi = {
-  Login: '/auth/oauth/token',
-  Logout: '/auth/oauth/logout',
+  Login: '/auth/oauth2/login',
+  Logout: '/auth/oauth2/logout',
   UserInfo: '/admin/sys/user/api/userInfo',
-  Captcha: '/auth/oauth/captcha'
+  Captcha: '/auth/oauth2/captcha'
 }
 
 /**
@@ -27,7 +27,7 @@ export function login (parameter) {
 
 export function captcha (uuid) {
   return request({
-    url: userApi.Captcha + '?uuid=' + uuid,
+    url: userApi.Captcha + '?uuid=' + uuid + '&grant_type=password',
     method: 'get'
   })
 }
