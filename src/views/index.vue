@@ -20,7 +20,7 @@
             :bordered="true"
             title="系统架构图"
             :body-style="{ padding: 0 }">
-            <img src="../../public/老寇云平台架构图.png" style="width: 100%;height: 100%;"/></a-card>
+            <img src="../../public/老寇云平台架构图-腾讯北极星.png" style="width: 100%;height: 100%;"/></a-card>
         </a-col>
       </a-row>
     </div>
