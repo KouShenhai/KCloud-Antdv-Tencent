@@ -39,8 +39,8 @@ const user = {
     Login ({ commit }, loginParam) {
       return new Promise((resolve, reject) => {
         login(loginParam).then(res => {
-          storage.set(ACCESS_TOKEN, res.access_token, 7 * 24 * 60 * 60 * 1000)
-          commit('SET_TOKEN', res.access_token)
+          storage.set(ACCESS_TOKEN, res.data.accessToken, 7 * 24 * 60 * 60 * 1000)
+          commit('SET_TOKEN', res.data.accessToken)
           resolve()
         })
         .catch(error => {
