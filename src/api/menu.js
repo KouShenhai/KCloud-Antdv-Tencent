@@ -8,6 +8,10 @@ export const menuApi = {
 export const getRouters = () => {
   return request({
     url: menuApi.Router,
-    method: 'get'
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      'gray': 'true'
+    }
   })
 }

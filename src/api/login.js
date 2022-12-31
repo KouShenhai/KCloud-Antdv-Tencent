@@ -28,7 +28,11 @@ export function login (parameter) {
 export function captcha (uuid) {
   return request({
     url: userApi.Captcha + '?uuid=' + uuid + '&grant_type=password',
-    method: 'get'
+    method: 'get',
+    headers: {
+      'xss-ticket': 'xss-white',
+      'gray': 'true'
+    }
   })
 }
 
@@ -42,12 +46,14 @@ export function getInfo () {
   })
 }
 
-export function logout () {
+export function logout (token) {
   return request({
     url: userApi.Logout,
     method: 'get',
     headers: {
-      'Content-Type': 'application/json;charset=UTF-8'
+      'Content-Type': 'application/json;charset=UTF-8',
+      'Authorization': 'Bearer ' + token,
+      'gray': 'true'
     }
   })
 }

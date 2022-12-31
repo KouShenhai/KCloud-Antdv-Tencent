@@ -78,7 +78,7 @@ const user = {
     // 登出
     Logout ({ commit }) {
       return new Promise((resolve, reject) => {
-        logout().then(() => {
+        logout(storage.get(ACCESS_TOKEN)).then(() => {
           resolve()
         }).catch(error => {
           reject(error)
