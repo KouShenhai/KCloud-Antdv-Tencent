@@ -30,7 +30,6 @@ export function captcha (uuid) {
     url: userApi.Captcha + '?uuid=' + uuid + '&grant_type=password',
     method: 'get',
     headers: {
-      'xss-ticket': 'xss-white',
       'gray': 'true'
     }
   })
