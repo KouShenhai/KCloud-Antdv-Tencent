@@ -50,14 +50,6 @@ export function uploadVideo (data) {
   })
 }
 
-export function uploadFile (data) {
-  return request({
-    url: '/admin/oss/api/upload',
-    method: 'post',
-    data: data
-  })
-}
-
 export function getAuditLog (businessId) {
   return request({
     url: '/admin/sys/resource/video/api/auditLog?businessId=' + businessId,

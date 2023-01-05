@@ -50,14 +50,6 @@ export function uploadAudio (data) {
   })
 }
 
-export function uploadFile (data) {
-  return request({
-    url: '/admin/oss/api/upload',
-    method: 'post',
-    data: data
-  })
-}
-
 export function getAuditLog (businessId) {
   return request({
     url: '/admin/sys/resource/audio/api/auditLog?businessId=' + businessId,

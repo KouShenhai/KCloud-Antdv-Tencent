@@ -50,14 +50,6 @@ export function uploadImage (data) {
   })
 }
 
-export function uploadFile (data) {
-  return request({
-    url: '/admin/oss/api/upload',
-    method: 'post',
-    data: data
-  })
-}
-
 export function getAuditLog (businessId) {
   return request({
     url: '/admin/sys/resource/image/api/auditLog?businessId=' + businessId,

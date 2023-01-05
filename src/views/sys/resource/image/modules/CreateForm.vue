@@ -8,13 +8,13 @@
         <a-input v-model="form.title" placeholder="请输入标题" />
       </a-form-model-item>
       <a-form-model-item label="资源">
-        <a-input v-model="form.uri" placeholder="请上传资源" style="display: none" />
+        <a-input v-model="form.url" placeholder="请上传资源" style="display: none" />
         <a-upload name="file" @change="uploadFile" accept=".gif,.GIF,.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.bmp,.BMP,.webp,.WEBP" :before-upload="beforeUpload">
           <a-button :disabled="disabled">
             上传图片
           </a-button>
         </a-upload>
-        <img :src="form.uri" width="100" height="100"/>
+        <img :src="form.url" v-show="display" width="100" height="100"/>
       </a-form-model-item>
       <a-form-model-item label="标签" prop="tags">
         <template v-for="(tag) in tags">
@@ -59,7 +59,8 @@
 
 <script>
 
-  import { getImage, addImage, updateImage, uploadImage, uploadFile } from '@/api/sys/image'
+  import { getImage, addImage, updateImage, uploadImage } from '@/api/sys/image'
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'CreateForm',
@@ -76,8 +77,7 @@
         form: {
           id: undefined,
           title: undefined,
-          uri: undefined,
-          md5: undefined,
+          url: undefined,
           tags: undefined,
           code: 'image',
           remark: undefined,
@@ -143,36 +143,30 @@
         this.form = {
           id: undefined,
           title: undefined,
-          uri: undefined,
-          md5: undefined,
+          url: undefined,
           tags: undefined,
           code: 'image',
           remark: undefined,
           processInstanceId: undefined
         }
       },
+      ...mapActions(['GetMD5']),
       uploadFile (data) {
         if (data.fileList.length > 0) {
           this.disabled = true
-          const formData = new FormData()
-          formData.append('file', data.file)
-          uploadImage(formData).then(response => {
-            this.form.uri = response.data.url
-            this.form.md5 = response.data.md5
-            if (this.form.uri == null) {
-              uploadFile(formData).then(response => {
-                this.form.uri = response.data.url
-                this.display = true
-              })
-            } else {
+          this.GetMD5(data.file).then(result => {
+            const formData = new FormData()
+            formData.append('file', data.file)
+            formData.append('md5', result)
+            uploadImage(formData).then(response => {
+              this.form.url = response.data.url
               this.display = true
-            }
+            })
           })
         } else {
           this.display = false
           this.disabled = false
-          this.form.uri = undefined
-          this.form.md5 = undefined
+          this.form.url = undefined
         }
       },
       beforeUpload () {
@@ -192,8 +186,7 @@
         getImage(id).then(response => {
           this.form.id = response.data.id
           this.tags = response.data.tags.split(',')
-          this.form.uri = response.data.uri
-          this.form.md5 = response.data.md5
+          this.form.url = response.data.url
           this.form.title = response.data.title
           this.form.code = 'image'
           this.display = true
