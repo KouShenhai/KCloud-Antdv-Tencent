@@ -115,8 +115,8 @@
           {{ auditStatusFormat(record) }}
         </span>
       </a-table>
-      <img v-show="visible2" :src="diagramUri" style="width: 100%;height: 100%">
-      <img v-show="visible1" :src="imageUri" style="width: 100%;height: 100%">
+      <img v-show="visible2" :src="diagramUrl" style="width: 100%;height: 100%">
+      <img v-show="visible1" :src="imageUrl" style="width: 100%;height: 100%">
     </a-modal>
   </page-header-wrapper>
 </template>
@@ -135,9 +135,9 @@
     mixins: [tableMixin],
     data () {
       return {
-        diagramUri: '',
+        diagramUrl: '',
         imageTitle: '',
-        imageUri: '',
+        imageUrl: '',
         list: [],
         selectedRowKeys: [],
         selectedRows: [],
@@ -306,8 +306,8 @@
       // 关闭模态框
       close () {
         this.visible = false
-        this.diagramUri = ''
-        this.imageUri = ''
+        this.diagramUrl = ''
+        this.imageUrl = ''
         this.imageTitle = ''
         this.list1 = []
         this.visible3 = false
@@ -330,7 +330,7 @@
         this.visible2 = false
         const id = row.id
         getImage(id).then(response => {
-          this.imageUri = response.data.uri
+          this.imageUrl = response.data.url
           this.imageTitle = response.data.title
         })
       },
@@ -346,7 +346,7 @@
         this.visible2 = true
         this.visible1 = false
         this.imageTitle = '流程图'
-        this.diagramUri = process.env.VUE_APP_BASE_API + '/admin/sys/resource/image/api/diagram?processInstanceId=' + row.processInstanceId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
+        this.diagramUrl = process.env.VUE_APP_BASE_API + '/admin/sys/resource/image/api/diagram?processInstanceId=' + row.processInstanceId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
       },
       /** 搜索按钮操作 */
       handleQuery () {

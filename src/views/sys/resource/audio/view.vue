@@ -116,8 +116,8 @@
           {{ auditStatusFormat(record) }}
         </span>
       </a-table>
-      <img v-show="visible2" :src="diagramUri" style="width: 100%;height: 100%">
-      <audio v-show="visible1" loop="loop" :src="audioUri" controls="controls"><object :data="audioUri" ><embed :src="audioUri" /></object></audio>
+      <img v-show="visible2" :src="diagramUrl" style="width: 100%;height: 100%">
+      <audio v-show="visible1" loop="loop" :src="audioUrl" controls="controls"><object :data="audioUrl" ><embed :src="audioUrl" /></object></audio>
     </a-modal>
   </page-header-wrapper>
 </template>
@@ -136,9 +136,9 @@ export default {
   mixins: [tableMixin],
   data () {
     return {
-      diagramUri: '',
+      diagramUrl: '',
       audioTitle: '',
-      audioUri: '',
+      audioUrl: '',
       list: [],
       list1: [],
       selectedRowKeys: [],
@@ -301,8 +301,8 @@ export default {
     // 关闭模态框
     close () {
       this.visible = false
-      this.diagramUri = ''
-      this.audioUri = ''
+      this.diagramUrl = ''
+      this.audioUrl = ''
       this.audioTitle = ''
       this.list1 = []
       this.visible3 = false
@@ -326,7 +326,7 @@ export default {
       this.visible3 = false
       const id = row.id
       getAudio(id).then(response => {
-        this.audioUri = response.data.uri
+        this.audioUrl = response.data.url
         this.audioTitle = response.data.title
       })
     },
@@ -336,7 +336,7 @@ export default {
       this.visible1 = false
       this.visible3 = false
       this.audioTitle = '流程图'
-      this.diagramUri = process.env.VUE_APP_BASE_API + '/admin/sys/resource/audio/api/diagram?processInstanceId=' + row.processInstanceId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
+      this.diagramUrl = process.env.VUE_APP_BASE_API + '/admin/sys/resource/audio/api/diagram?processInstanceId=' + row.processInstanceId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
     },
     handleQuery3 (row) {
       this.audioTitle = '审批日志'

@@ -9,12 +9,12 @@
       </a-form-model-item>
       <a-form-model-item label="资源">
         <a-input v-model="form.uri" placeholder="请上传资源" style="display: none" />
-        <a-upload name="file"  @change="uploadFile" accept=".cda,.wav,.mp3,.aif,.aiff,.mid,.wma,.ra,.vqf,.ape,.CDA,.WAV,.MP3,.AIF,.AIFF,.MID,.WMA,.RA,.VQF,.APE" :before-upload="beforeUpload">
+        <a-upload name="file" @change="uploadFile" accept=".cda,.wav,.mp3,.aif,.aiff,.mid,.wma,.ra,.vqf,.ape,.CDA,.WAV,.MP3,.AIF,.AIFF,.MID,.WMA,.RA,.VQF,.APE" :before-upload="beforeUpload">
           <a-button :disabled="disabled">
             上传音频
           </a-button>
         </a-upload>
-        <audio v-show="display" loop='loop' :src="form.uri" controls='controls'><object :data="form.uri" ><embed :src="form.uri" /></object></audio>
+        <audio v-show="display" loop="loop" :src="form.uri" controls="controls"><object :data="form.uri" ><embed :src="form.uri" /></object></audio>
       </a-form-model-item>
       <a-form-model-item label="标签" prop="tags">
         <template v-for="(tag, index) in tags">
@@ -59,7 +59,7 @@
 
 <script>
 
-import { getAudio, addAudio, updateAudio,uploadAudio,uploadFile } from '@/api/sys/audio'
+import { getAudio, addAudio, updateAudio, uploadAudio, uploadFile } from '@/api/sys/audio'
 
 export default {
   name: 'CreateForm',
@@ -79,16 +79,16 @@ export default {
         uri: undefined,
         md5: undefined,
         tags: undefined,
-        code:"audio",
-        remark:undefined,
-        processInstanceId:undefined
+        code: 'audio',
+        remark: undefined,
+        processInstanceId: undefined
       },
-      disabled:false,
+      disabled: false,
       open: false,
       display: false,
       rules: {
         title: [{ required: true, message: '标题不能为空', trigger: 'blur' }],
-        remark: [{ required: true, message: '备注不能为空', trigger: 'blur' }],
+        remark: [{ required: true, message: '备注不能为空', trigger: 'blur' }]
       }
     }
   },
@@ -146,12 +146,12 @@ export default {
         uri: undefined,
         md5: undefined,
         tags: undefined,
-        code:"audio",
+        code: 'audio',
         remark: undefined,
-        processInstanceId:undefined
+        processInstanceId: undefined
       }
     },
-    uploadFile(data) {
+    uploadFile (data) {
       if (data.fileList.length > 0) {
         this.disabled = true
         const formData = new FormData()
@@ -175,7 +175,7 @@ export default {
         this.form.md5 = undefined
       }
     },
-    beforeUpload() {
+    beforeUpload () {
       return false
     },
      /** 新增按钮操作 */
@@ -191,11 +191,11 @@ export default {
       const id = row ? row.id : ids
       getAudio(id).then(response => {
         this.form.id = response.data.id
-        this.tags = response.data.tags.split(",")
+        this.tags = response.data.tags.split(',')
         this.form.uri = response.data.uri
         this.form.md5 = response.data.md5
         this.form.title = response.data.title
-        this.form.code = "audio"
+        this.form.code = 'audio'
         this.display = true
         this.form.processInstanceId = response.data.processInstanceId
         this.form.remark = response.data.remark
@@ -208,7 +208,7 @@ export default {
       this.$refs.form.validate(valid => {
         if (valid) {
           this.submitLoading = true
-          this.form.tags = this.tags.join(",")
+          this.form.tags = this.tags.join(',')
           if (this.form.id !== undefined) {
             updateAudio(this.form).then(response => {
               this.$message.success(

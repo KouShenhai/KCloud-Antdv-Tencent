@@ -115,14 +115,14 @@
           {{ auditStatusFormat(record) }}
         </span>
       </a-table>
-      <img v-show="visible2" :src="diagramUri" style="width: 100%;height: 100%">
+      <img v-show="visible2" :src="diagramUrl" style="width: 100%;height: 100%">
       <video
         v-show="visible1"
-        :src="videoUri"
+        :src="videoUrl"
         loop="loop"
         width="200"
         height="100"
-        controls="controls"><source :src="videoUri" type="video/mp4"><object :data="videoUri" width="200" height="100"><embed :src="videoUri" width="200" height="100" /></object></video>
+        controls="controls"><source :src="videoUrl" type="video/mp4"><object :data="videoUrl" width="200" height="100"><embed :src="videoUrl" width="200" height="100" /></object></video>
     </a-modal>
   </page-header-wrapper>
 </template>
@@ -142,9 +142,9 @@
     mixins: [tableMixin],
     data () {
       return {
-        diagramUri: '',
+        diagramUrl: '',
         videoTitle: '',
-        videoUri: '',
+        videoUrl: '',
         list: [],
         selectedRowKeys: [],
         selectedRows: [],
@@ -309,8 +309,8 @@
       // 关闭模态框
       close () {
         this.visible = false
-        this.diagramUri = ''
-        this.videoUri = ''
+        this.diagramUrl = ''
+        this.videoUrl = ''
         this.videoTitle = ''
         this.visible3 = false
         this.list1 = []
@@ -344,7 +344,7 @@
         this.visible2 = false
         const id = row.id
         getVideo(id).then(response => {
-          this.videoUri = response.data.uri
+          this.videoUrl = response.data.url
           this.videoTitle = response.data.title
         })
       },
@@ -353,7 +353,7 @@
         this.visible2 = true
         this.visible1 = false
         this.videoTitle = '流程图'
-        this.diagramUri = process.env.VUE_APP_BASE_API + '/admin/sys/resource/video/api/diagram?processInstanceId=' + row.processInstanceId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
+        this.diagramUrl = process.env.VUE_APP_BASE_API + '/admin/sys/resource/video/api/diagram?processInstanceId=' + row.processInstanceId + '&Authorization=Bearer ' + storage.get(ACCESS_TOKEN)
       },
       /** 搜索按钮操作 */
       handleQuery () {
