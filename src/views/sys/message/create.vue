@@ -64,6 +64,7 @@ import { saveMessage } from '@/api/sys/message'
 import Editor from '@/components/Editor'
 import { userOption } from '@/api/sys/user'
 import { uploadFile } from '@/api/sys/oss'
+import { mapActions } from 'vuex'
 export default {
   name: 'NoticeForm',
   components: {
@@ -155,11 +156,15 @@ export default {
     })
   },
   methods: {
+    ...mapActions(['GetMD5']),
     imgAdd (pos, file) {
-      const imgData = new FormData()
-      imgData.append('file', file)
-      uploadFile(imgData).then(res => {
-        this.$refs.content.$img2Url(pos, res.data.url)
+      this.GetMD5(file).then(result => {
+        const imgData = new FormData()
+        imgData.append('file', file)
+        imgData.append('md5', result)
+        uploadFile(imgData).then(res => {
+          this.$refs.content.$img2Url(pos, res.data.url)
+        })
       })
     },
     // 表单重置

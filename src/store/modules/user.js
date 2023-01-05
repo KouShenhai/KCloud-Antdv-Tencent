@@ -1,6 +1,7 @@
 import storage from 'store'
 import { login, getInfo, logout } from '@/api/login'
 import { ACCESS_TOKEN, USER_ID, USER_NAME } from '@/store/mutation-types'
+import SparkMD5 from 'spark-md5'
 
 const user = {
   state: {
@@ -49,6 +50,18 @@ const user = {
       })
     },
 
+    GetMD5 ({ commit }, file) {
+      return new Promise((resolve, reject) => {
+        const sparkMD5 = new SparkMD5.ArrayBuffer()
+        const reader = new FileReader()
+        reader.readAsArrayBuffer(file)
+        // 异步执行函数
+        reader.onload = function (e) {
+          sparkMD5.append(e.target.result)
+          resolve(sparkMD5.end(false))
+        }
+      })
+    },
     // 获取用户信息
     GetInfo ({ commit }) {
       return new Promise((resolve, reject) => {

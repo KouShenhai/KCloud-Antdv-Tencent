@@ -43,9 +43,11 @@
    ```shell
    npm run build
    ```
+   
 5. 插件安装
    ```shel
    npm install mavon-editor --save
+   npm i spark-md5 -S
    ```
   
 ## 致谢

@@ -81,7 +81,7 @@ export function updateInfo (data) {
 // 用户头像上传
 export function uploadAvatar (data) {
   return request({
-    url: '/admin/oss/api/upload',
+    url: '/oss/api/upload',
     method: 'post',
     data: data
   })
