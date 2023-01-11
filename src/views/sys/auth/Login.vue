@@ -99,7 +99,7 @@ export default {
           const password = encodeURIComponent(encrypt.encrypt(this.form.password))
           const uuid = this.form.uuid
           const captcha = this.form.captcha
-          const params = { username: username, password: password, captcha: captcha, uuid: uuid, grant_type: 'password', scope: 'auth', client_id: 'auth-client', client_secret: 'secret' }
+          const params = { username: username, password: password, captcha: captcha, uuid: uuid, grant_type: 'password' }
           this.Login(params)
             .then(() => this.loginSuccess())
             // eslint-disable-next-line handle-callback-err

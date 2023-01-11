@@ -40,8 +40,8 @@ const user = {
     Login ({ commit }, loginParam) {
       return new Promise((resolve, reject) => {
         login(loginParam).then(res => {
-          storage.set(ACCESS_TOKEN, res.data.accessToken, 7 * 24 * 60 * 60 * 1000)
-          commit('SET_TOKEN', res.data.accessToken)
+          storage.set(ACCESS_TOKEN, res.access_token, 7 * 24 * 60 * 60 * 1000)
+          commit('SET_TOKEN', res.access_token)
           resolve()
         })
         .catch(error => {
@@ -51,7 +51,7 @@ const user = {
     },
 
     GetMD5 ({ commit }, file) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const sparkMD5 = new SparkMD5.ArrayBuffer()
         const reader = new FileReader()
         reader.readAsArrayBuffer(file)
