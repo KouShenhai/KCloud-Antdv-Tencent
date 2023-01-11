@@ -102,7 +102,6 @@ export default {
           const params = { username: username, password: password, captcha: captcha, uuid: uuid, grant_type: 'password' }
           this.Login(params)
             .then(() => this.loginSuccess())
-            // eslint-disable-next-line handle-callback-err
             .catch(() => this.requestFailed())
             .finally(() => {
               this.logining = false
